@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />	
+	<title>DUV Ultramarathon-Statistik</title>
+	
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	
+	<meta name="author" content="Jürgen Schoch" />
+	<meta name="publisher" content="DUV" />
+	<meta name="copyright" content="DUV" />
+	<meta name="keywords" content="DUV, Ultramarathon, Bestenliste, Laufen, Ranking, running, statistics" />
+	<meta name="description" content="DUV Ultramarathon-Statistik" />
+	<meta name="page-topic" content="Marathon" />
+	<meta name="audience" content="All" />
+	<meta name="expires" content="NEVER" />
+	<meta name="page-type" content="Statistik" />
+	<meta name="robots" content="INDEX,FOLLOW" />	
+	
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v2=2bweXROPWO"/>
+    <link rel="icon" type="image/png" href="/favicon-32x32.png?v2=2bweXROPWO" sizes="32x32"/>
+    <link rel="icon" type="image/png" href="/favicon-16x16.png?v2=2bweXROPWO" sizes="16x16"/>
+    <link rel="manifest" href="/manifest.json?v2=2bweXROPWO"/>
+    <link rel="mask-icon" href="/safari-pinned-tab.svg?v2=2bweXROPWO" color="#5bbad5"/>
+    <link rel="shortcut icon" href="/favicon.ico?v2=2bweXROPWO"/>
+    <meta name="apple-mobile-web-app-title" content="DUV Stats"/>
+    <meta name="application-name" content="DUV Stats"/>
+    <meta name="msapplication-TileColor" content="#ffc40d"/>
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png?v2=2bweXROPWO"/>
+    <meta name="theme-color" content="#ffffff"/>
+       
+	<link rel="stylesheet" href="duv_statistics.css" type="text/css" />
+<!--	<link rel="stylesheet" href="flags.css" type="text/css" />  -->
+	<link rel="alternate" type="application/rss+xml" href="latestresults_rss.php" title="RSS 2.0 feed for the latest results" />
+	<link rel="alternate" type="application/rss+xml" href="latestresultsGBR_rss.php" title="RSS 2.0 feed for the latest results from UK" />
+	<link rel="alternate" type="application/rss+xml" href="nextraces_rss.php" title="RSS 2.0 feed for upcoming races" />
+	<link rel="alternate" type="application/rss+xml" href="nextracesGBR_rss.php" title="RSS 2.0 feed for upcoming races in UK" />
+    
+</head>
+
+<body>
+
+<!-- header with DUV Logo, heading and photo  -->
+<div id="header">    
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		  <tr>
+			<td width="15" height="140"><img src="_bilder/round_edge_left.gif" width="15" height="140" alt="" /></td>        
+			<td width="260" height="140" bgcolor="#FFFFFF" ><a href="http://www.ultra-marathon.org" title="Zur DUV Homepage">
+				<img src="_bilder/duv_logo.gif" alt="Zur DUV Homepage" border="0"/></a></td>
+			<td height="140" valign="middle" align="center" bgcolor="#FFFFFF"><h2>Ultramarathon Statistiken</h2></td>        
+			<td width="150" align="right"><img src="_bilder/header.jpg" alt="Ultra-Marathon" /></td>
+			<td width="15"><img src="_bilder/round_edge_right.gif" width="15" height="140" alt="" /></td>
+		  </tr>
+	</table>
+</div>
+
+<!-- language selection row  -->	
+<div id='language_selection'><span>Select your language:</span>		  
+	<ul id='langflags'>
+		<li id='flag1'><a href='/search_runner.php?&amp;sname=bicher&amp;Submit_x=0&amp;Submit_y=0&amp;Language=DE' title='Deutsch'></a></li>
+		<li id='flag2'><a href='/search_runner.php?&amp;sname=bicher&amp;Submit_x=0&amp;Submit_y=0&amp;Language=EN' title='English'></a></li>
+		<li id='flag3'><a href='/search_runner.php?&amp;sname=bicher&amp;Submit_x=0&amp;Submit_y=0&amp;Language=FR' title='Français'></a></li>	      	  
+		<li id='flag4'><a href='/search_runner.php?&amp;sname=bicher&amp;Submit_x=0&amp;Submit_y=0&amp;Language=ES' title='Español'></a></li>
+		<li id='flag5'><a href='/search_runner.php?&amp;sname=bicher&amp;Submit_x=0&amp;Submit_y=0&amp;Language=IT' title='Italiano'></a></li>
+		<li id='flag6'><a href='/search_runner.php?&amp;sname=bicher&amp;Submit_x=0&amp;Submit_y=0&amp;Language=RU' title='???????'></a></li>
+		<li id='flag7'><a href='/search_runner.php?&amp;sname=bicher&amp;Submit_x=0&amp;Submit_y=0&amp;Language=ZH' title='????'></a></li>
+		<li id='flag8'><a href='/search_runner.php?&amp;sname=bicher&amp;Submit_x=0&amp;Submit_y=0&amp;Language=JA' title='???'></a></li>
+	</ul>
+</div>
+
+<div id="container">
+	<div id="sidebar">	<!-- begin of sidebar  -->	 	
+			<!-- the list of navigation links  -->
+			<div class="navigationh3"><strong>Navigation</strong></div>
+			<div class="navigation">
+				<ul>
+					<li><a href='index.php' class='Nav1'>Startseite</a></li>
+					<li><a href='calendar.php' class='Nav1'>Laufkalender</a></li>
+					<li><a href='geteventlist.php' class='Nav1'>Ergebnisdatenbank</a></li>                					
+					<li><a href='overview_intbestlist.php' class='Nav1'>Internationale Bestenlisten</a></li>
+					<li><a href='overview_dtbestlist.php' class='Nav1'>Deutsche Bestenlisten</a></li>
+					<li><a href='overview_cups.php' class='Nav1'>Cupwertungen</a></li>
+					<li><a href='overview_records.php' class='Nav1'>Rekorde</a></li>
+					<li><a href='overview_champions.php' class='Nav1'>Meisterschaften</a></li>					
+					<li><a href='summary.php' class='Nav1'>Zusammenfassung</a></li> 
+					<li><a href='whatsnew.php' class='Nav1'>Was ist neu?</a></li>
+					<li><a href='faq.php' class='Nav1'>FAQ</a></li>
+					<li><a href='credits.php' class='Nav1'>Dank</a></li>
+					<li><a href='./walk/index.php' class='Nav1'>Ultragehen</a></li>
+					<li><a href='contact3.php' class='Nav1'>Kontakt</a></li>
+					<li><a href='http://www.ultra-marathon.org' class='Nav1'>Zur DUV Homepage</a></li>
+				</ul>		
+			</div>   <!-- end of navigation links  -->
+			
+			<img src="_bilder/_clearpixel.gif" width="180" height="12" alt="" />
+			
+			<!-- the list of search links  -->
+			<div class="navigationh3"><strong>Suche</strong></div>
+			<div class="navigation">		
+				<form class='search' name='NameSearch' method='get' action='search_runner.php'>
+					<span><strong>Personensuche</strong></span> <br />
+					<span>	(Nachnamen eingeben)</span> <br />
+					<input name='sname' type='text' size='12' value='' />
+					<input class='go' name='Submit' type='image' src='_bilder/go.gif' alt='Start search' /> 
+																	
+				</form>	
+				<form class='search' name='ClubSearch' method='get' action='getresultclub.php'>
+					<span><strong>Vereinssuche</strong></span> <br />
+					<span>Vereinsnamen (auch teilweise):</span> <br />
+					<input name='club' type='text' size='12' value='' />
+					<input class='go' name='Submit' type='image' src='_bilder/go.gif' alt='Start search' /> 																	
+				</form>	
+				<form class='search' name='EventSearch' method='get' action='search_event.php'>
+					<span><strong>Laufsuche</strong></span> <br />
+					<span>	(Laufname oder Ort)</span> <br />
+					<input name='sname' type='text' size='12' value='' />
+					<input class='go' name='Submit' type='image' src='_bilder/go.gif' alt='Start search' /> 
+				</form>	
+				<p style="margin: 6px;"><a href='bulk_search.php'>Listensuche</a></p>
+				<p style="margin: 6px;">&nbsp;</p>
+			</div>   <!-- end of search links  -->
+
+	</div>   <!-- end of sidebar  -->
+	
+	<div id="mainbox">   <!-- begin of main content  -->
+	<div id="infobox">
+<table width='665' align='left' border='0' ><tr>
+<td><a class='nocolor' href='http://www.exito.de/de/gipfelstuermer.php' target='_blank'>
+  <img title='Online Marketing Agentur sucht Gipfelstürmer' alt='Online Marketing Agentur sucht Gipfelstürmer' src='./_bilder/infobox/exito-duv-job-anzeige.jpg' width='300' height='60' /></a>
+</td><td width='30'>&nbsp;</td>
+<td><a class='nocolor' href='http://badgastein.ultraks.com/' target='_blank'>
+  <img title='Bad Gastein Ultraks' alt='Bad Gastein Ultraks' src='./_bilder/infobox/badgasteinultraks_V2.gif' width='300' height='60' /></a>
+</td><td width='30'>&nbsp;</td>
+<td><a class='nocolor' href='http://www.atlas-trail.com/' target='_blank'>
+  <img title='UTAT Ultra-Trail-Atlas-Toubcal' alt='UTAT Ultra-Trail-Atlas-Toubcal' src='./_bilder/infobox/utat2017.gif' width='300' height='60' /></a>
+</td><td width='30'>&nbsp;</td>
+</tr></table>
+	</div>   <!-- end of infobox  -->
+	
+
+<h2>Namenssuche nach: bicher</h2>
+<p>5 Suchergebnisse</p>
+<p>Ein Klick auf den Namen zeigt alle erfassten Ergebnisse für den jeweiligen Läufer.</p>
+<table border='1' cellpadding='2' cellspacing='0'>
+<tr>
+	<th width='5%'>&nbsp;</th>
+	<th width='20%'>Nachname, Vorname</th>
+	<th width='15%'>Originalname</th>
+	<th width='20%'>Verein</th>
+	<th width='20%'>Wohnort</th>
+	<th width='5%'>Nat.</th>
+	<th width='5%'>M/W</th>
+	<th width='7%'>Jg.</th>
+</tr>
+ <tr bgcolor='#ffffff'>
+   <td class='boxed' nowrap='nowrap' align='center'>1</td>
+   <td class='boxed' nowrap='nowrap' align='left'><a href='getresultperson.php?runner=40840'>Bicher, Stefan</a></td>
+   <td class='boxed' nowrap='nowrap' align='left'>&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>LG Nord Berlin Ultrateam&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>Berlin&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='center'>GER</td>
+   <td class='boxed' nowrap='nowrap' align='center'>M</td>
+   <td class='boxed' nowrap='nowrap' align='center'>1982</td>
+ </tr>
+ <tr bgcolor='#f5f5f5'>
+   <td class='boxed' nowrap='nowrap' align='center'>2</td>
+   <td class='boxed' nowrap='nowrap' align='left'><a href='getresultperson.php?runner=725180'>Bicherel, Fabien</a></td>
+   <td class='boxed' nowrap='nowrap' align='left'>&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='center'>FRA</td>
+   <td class='boxed' nowrap='nowrap' align='center'>M</td>
+   <td class='boxed' nowrap='nowrap' align='center'>&nbsp;</td>
+ </tr>
+ <tr bgcolor='#ffffff'>
+   <td class='boxed' nowrap='nowrap' align='center'>3</td>
+   <td class='boxed' nowrap='nowrap' align='left'><a href='getresultperson.php?runner=468909'>Bicherel, Laurent</a></td>
+   <td class='boxed' nowrap='nowrap' align='left'>&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>S/L Ea Du Plateau Est&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>Le Mesnil Esnard&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='center'>FRA</td>
+   <td class='boxed' nowrap='nowrap' align='center'>M</td>
+   <td class='boxed' nowrap='nowrap' align='center'>1965</td>
+ </tr>
+ <tr bgcolor='#f5f5f5'>
+   <td class='boxed' nowrap='nowrap' align='center'>4</td>
+   <td class='boxed' nowrap='nowrap' align='left'><a href='getresultperson.php?runner=878213'>Bicherel, Yoann</a></td>
+   <td class='boxed' nowrap='nowrap' align='left'>&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>Auzebosc&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='center'>FRA</td>
+   <td class='boxed' nowrap='nowrap' align='center'>M</td>
+   <td class='boxed' nowrap='nowrap' align='center'>1985</td>
+ </tr>
+ <tr bgcolor='#ffffff'>
+   <td class='boxed' nowrap='nowrap' align='center'>5</td>
+   <td class='boxed' nowrap='nowrap' align='left'><a href='getresultperson.php?runner=175'>Bicherl, Wolfgang Josef</a></td>
+   <td class='boxed' nowrap='nowrap' align='left'>&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>LG Seligenstadt&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='left'>Hainburg&nbsp;</td>
+   <td class='boxed' nowrap='nowrap' align='center'>GER</td>
+   <td class='boxed' nowrap='nowrap' align='center'>M</td>
+   <td class='boxed' nowrap='nowrap' align='center'>1956</td>
+ </tr>
+</table>
+<br />
+
+	</div>   <!-- end of mainbox -->
+	
+</div>  <!-- end of container -->
+
+<div id='footer'>		
+	<p class="Copyright">
+		<a href='http://www.ultra-marathon.org/impressum' target='_blank'>Impressum</a> &#8226;
+		Copyright &copy; Deutsche Ultramarathon-Vereinigung e.V. 2006-2017 &#8226; 
+		Design by <a href='http://www.munique-design.de' target='_blank' >munique design</a>
+	</p>
+</div>    <!-- end of footer -->
+
+</body>
+</html>
